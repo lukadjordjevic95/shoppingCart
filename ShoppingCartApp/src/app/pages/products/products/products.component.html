@@ -1,0 +1,36 @@
+<button class="btn btn-warning shopping-cart-btn" [disabled]="($cartProducts | async).products.length === 0" (click)="openCart()">
+  <i class="fa fa-shopping-cart fa-3x"></i>
+  <span class="cart-items-nr badge badge-success" *ngIf="($cartProducts | async).products.length > 0">{{($cartProducts | async).products.length}}</span>
+</button>
+<div class="container">
+  <form>
+    <div class="form-group form-inline mt-5">
+        Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+    </div>
+  </form>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col" sortable="name" (sort)="onSort($event)">Product Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of filteredProducts; index as i">
+      <td>
+        {{ product.name }}
+      </td>
+      <td><input #quantity [value]="product.quantity" type="number" min="0"></td>
+      <td>{{ product.price | currency:'EUR':'symbol':'.2':'de' }}</td>
+      <td>
+        <button type="button" (click)="addToCart(product, quantity.value)" class="btn btn-success">
+        <i class="fa fa-shopping-cart"></i>
+          Add to cart
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

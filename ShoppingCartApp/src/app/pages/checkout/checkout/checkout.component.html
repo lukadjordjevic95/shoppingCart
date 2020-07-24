@@ -1,0 +1,28 @@
+<button class="btn btn-light" [routerLink]="['/products']">
+  <i class="fa fa-arrow-left fa-3x"></i>
+</button>
+<div class="container">
+  <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs justify-content-center">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink [ngClass]="{'form-valid': ($checkoutState | async).shippingDataValid}">Shipping</a>
+      <ng-template ngbNavContent>
+        <app-shipping></app-shipping>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2" [disabled]="!($checkoutState | async).shippingDataValid">
+      <a ngbNavLink [ngClass]="{'form-valid': ($checkoutState | async).paymentDataValid}">Payment</a>
+      <ng-template ngbNavContent>
+        <app-payment></app-payment>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3" [disabled]="!($checkoutState | async).paymentDataValid || !($checkoutState | async).shippingDataValid">
+      <a ngbNavLink>Checkout</a>
+      <ng-template ngbNavContent>
+        <app-shipping [readonly]="true"></app-shipping>
+        <app-payment [readonly]="true"></app-payment>
+        <app-cart></app-cart>
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

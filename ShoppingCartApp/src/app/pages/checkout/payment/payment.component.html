@@ -1,0 +1,31 @@
+<form [formGroup]="paymentForm">
+  <div class="container">
+    <div class="form-group">
+      <label>Account Owner</label>
+      <input [readonly]="readonly" formControlName="accountOwner" class="form-control" [ngClass]="{'is-invalid': paymentForm.get('accountOwner').errors && paymentForm.get('accountOwner').touched}" placeholder="Account Owner">
+      <small class="form-text invalid-feedback"
+      *ngIf="paymentForm.get('accountOwner').touched &&
+      paymentForm.get('accountOwner').errors &&
+      paymentForm.get('accountOwner').errors.required"
+      >This field is required
+      </small>
+    </div>
+    <div class="form-group">
+      <label>IBAN</label>
+      <input [readonly]="readonly" formControlName="iban" name="iban" class="form-control" [ngClass]="{'is-invalid': paymentForm.get('iban').errors && paymentForm.get('iban').touched}" placeholder="IBAN">
+      <small class="form-text invalid-feedback"
+      *ngIf="paymentForm.get('iban').touched &&
+      paymentForm.get('iban').errors &&
+      paymentForm.get('iban').errors.required"
+      >This field is required
+      </small>
+      <!-- <small class="form-text invalid-feedback"
+      *ngIf="paymentForm.get('iban').touched &&
+      paymentForm.get('iban').errors &&
+      paymentForm.get('iban').errors.iban"
+      >IBAN is invalid!
+      </small> -->
+    </div>
+    <button *ngIf="!readonly" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+  </div>
+</form>

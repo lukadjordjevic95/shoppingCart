@@ -1,0 +1,63 @@
+<form [formGroup]="shippingForm">
+  <div class="container">
+    <div class="form-group">
+      <label>First name</label>
+      <input [readOnly]="readonly" formControlName="firstName" class="form-control" [ngClass]="{'is-invalid': shippingForm.get('firstName').errors && shippingForm.get('firstName').touched}" placeholder="First name">
+      <small class="form-text invalid-feedback"
+      *ngIf="shippingForm.get('firstName').touched &&
+      shippingForm.get('firstName').errors &&
+      shippingForm.get('firstName').errors.required"
+      >This field is required
+      </small>
+      <small class="form-text invalid-feedback"
+      *ngIf="shippingForm.get('firstName').touched &&
+      shippingForm.get('firstName').errors &&
+      shippingForm.get('firstName').errors.pattern"
+      >Only letters are allowed!
+      </small>
+    </div>
+    <div class="form-group">
+      <label>Second name</label>
+      <input [readOnly]="readonly" formControlName="secondName" class="form-control" [ngClass]="{'is-invalid': shippingForm.get('secondName').errors && shippingForm.get('secondName').touched}" placeholder="Second name">
+      <small class="form-text invalid-feedback"
+      *ngIf="shippingForm.get('secondName').touched &&
+      shippingForm.get('secondName').errors &&
+      shippingForm.get('secondName').errors.required"
+      >This field is required
+      </small>
+      <small class="form-text invalid-feedback"
+      *ngIf="shippingForm.get('secondName').touched &&
+      shippingForm.get('secondName').errors &&
+      shippingForm.get('secondName').errors.pattern"
+      >Only letters are allowed!
+      </small>
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <input [readOnly]="readonly" formControlName="address" class="form-control" [ngClass]="{'is-invalid': shippingForm.get('address').errors && shippingForm.get('address').touched}" placeholder="Address">
+      <small class="form-text invalid-feedback"
+      *ngIf="shippingForm.get('address').touched &&
+      shippingForm.get('address').errors &&
+      shippingForm.get('address').errors.required"
+      >This field is required
+      </small>
+    </div>
+    <div class="form-group">
+      <label>Telephone</label>
+      <input [readOnly]="readonly" formControlName="telephone" class="form-control" [ngClass]="{'is-invalid': shippingForm.get('telephone').errors && shippingForm.get('telephone').touched}" placeholder="Telephone">
+      <small class="form-text invalid-feedback"
+      *ngIf="shippingForm.get('telephone').touched &&
+      shippingForm.get('telephone').errors &&
+      shippingForm.get('telephone').errors.required"
+      >This field is required
+      </small>
+      <small class="form-text invalid-feedback"
+      *ngIf="shippingForm.get('telephone').touched &&
+      shippingForm.get('telephone').errors &&
+      shippingForm.get('telephone').errors.pattern"
+      >Only “+” sign and numbers 0-9 allowed!
+      </small>
+    </div>
+    <button *ngIf="!readonly" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+  </div>
+</form>
